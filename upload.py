@@ -30,4 +30,5 @@ def upload_file():
                         os.path.join(app.config['UPLOAD_FOLDER'], filename)))
     return jsonify(error='Mismatch file type')
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
