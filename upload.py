@@ -19,6 +19,10 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+@app.route("/")
+def hello():
+    return "<h1 style='color:blue'>Hello There!</h1>"
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files['wireframe']
