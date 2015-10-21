@@ -5,7 +5,7 @@ def getBoundingBoxes(filename):
 
     img = cv2.imread(filename);
     blur = cv2.blur(img,(11,11))
-    (ret,thresh) = cv2.threshold(blur,40,255,cv2.THRESH_BINARY)
+    #(ret,thresh) = cv2.threshold(blur,40,255,cv2.THRESH_BINARY)
     (ret,blur) = cv2.threshold(blur,240,255,cv2.THRESH_BINARY)
 
     thr = cv2.cvtColor(blur, cv2.COLOR_BGR2GRAY)
