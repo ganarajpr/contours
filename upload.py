@@ -48,10 +48,16 @@ def detect_file():
         filename = str(uuid.uuid4()) + getFileExtension(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],
                     filename))
-	p = subprocess.Popen(["docker","run","-v","/home/ganaraj/contours/upload:/detect","-w",
-			"/detect","-it","--rm","opecv3", "./prediction",
-                   filename ], stdout=subprocess.PIPE)
-	output, err = p.communicate()
+	#p = subprocess.Popen(["docker","run","-v","/home/ganaraj/contours/upload:/detect","-w",
+	#		"/detect","-it","--rm","opecv3", "./prediction",
+        #           filename ], stdout=subprocess.PIPE)
+	os.chdir('/home/ganaraj/contours/upload')
+	cmd = './prediction ' + filename
+	print "executing " + cmd
+	process =os.popen(cmd)
+	output = process.read()
+	process.close()
+	#output = os.system('./prediction ' + filename)
 	return jsonify(result=output.rstrip())
     return jsonify(error='Mismatch file type')
 
